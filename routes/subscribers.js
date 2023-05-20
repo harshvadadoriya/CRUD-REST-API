@@ -7,7 +7,10 @@ router.get('/', async (req, res) => {
 	const limit = parseInt(req.query.limit);
 	try {
 		const subscribers = await Subscriber.find().limit(limit);
-		res.json(subscribers);
+		const allData = {
+			subscriberDetails: subscribers,
+		};
+		res.json(allData);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
